@@ -2,7 +2,7 @@
 import pandas as pd
 from collections import Counter
 
-def step7_final_adjustments(df, num_classes, grouped_ids_step5):
+def step7_final_check_and_fix(df, num_classes):
     # Βοηθητικές συναρτήσεις
     def count_features(df, group_col, value_col):
         result = {i: Counter() for i in range(1, num_classes + 1)}
