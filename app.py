@@ -5,7 +5,7 @@ import math
 from io import BytesIO
 
 from step1_senarios import step1_katanomi_paidia_ekpaideutikon
-from step2 import step2_zoiroi_mathites
+from step2 import step2_zoiroi
 from step3 import step3_idiaiterotites
 from step4 import step4_amivaia_filia
 from step5 import step5_filikoi_omades
