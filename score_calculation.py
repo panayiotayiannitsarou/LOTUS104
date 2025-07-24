@@ -10,7 +10,7 @@ import math
 from io import BytesIO
 from step1_senarios import step1_katanomi_paidia_ekpaideutikon
 from step2 import step2_zoiroi
-from step3 import step3_idiaterotites
+from step3 import step3_idiaiterotites
 from step4 import step4_amivaia_filia
 from step5 import step5_filikoi_omades
 from step6 import step6_ypolipoi_xwris_filies
@@ -21,7 +21,7 @@ from score import calculate_score  # ✅ Εισαγωγή score
 
 def apply_all_steps_for_senario(df, num_classes):
     df = step2_zoiroi(df, num_classes)
-    df = step3_idiaterotites(df, num_classes)
+    df = step3_idiaiterotites(df, num_classes)
     df = step4_amivaia_filia(df)
     df = step5_filikoi_omades(df, num_classes)
     df = step6_ypolipoi_xwris_filies(df, num_classes)
