@@ -1,6 +1,6 @@
+
 import pandas as pd
 import streamlit as st
-import random
 
 # ✅ Βήματα 7 & 8: Έλεγχος Ποιοτικών Χαρακτηριστικών
 
@@ -10,7 +10,7 @@ def step7_8_quality_check(df, num_classes):
     for char in characteristics:
         value_counts = {}
         for i in range(num_classes):
-            class_id = f'Α{i+1}'  # 🔁 changed from T{i+1}
+            class_id = f'Α{i+1}'  # ✅ changed from T{i+1}
             class_df = df[df['ΤΜΗΜΑ'] == class_id]
             count_N = (class_df[char] == 'Ν').sum()
             value_counts[class_id] = count_N
@@ -26,7 +26,7 @@ def step7_8_quality_check(df, num_classes):
 def show_statistics_table(df, num_classes):
     summary = []
     for i in range(num_classes):
-        class_id = f'Α{i+1}'  # 🔁 changed from T{i+1}
+        class_id = f'Α{i+1}'  # ✅ changed from T{i+1}
         class_df = df[df['ΤΜΗΜΑ'] == class_id]
         total = class_df.shape[0]
         stats = {
@@ -45,11 +45,3 @@ def show_statistics_table(df, num_classes):
     stats_df = pd.DataFrame(summary)
     st.subheader("📊 Πίνακας Στατιστικών Ανά Τμήμα")
     st.dataframe(stats_df)
-
-    if st.button("📤 Εξαγωγή Πίνακα Στατιστικών σε Excel"):
-        output = pd.ExcelWriter("katanomi_output.xlsx", engine='xlsxwriter')
-        df.to_excel(output, sheet_name='Κατανομή', index=False)
-        stats_df.to_excel(output, sheet_name='Στατιστικά', index=False)
-        output.close()
-        with open("katanomi_output.xlsx", "rb") as f:
-            st.download_button("⬇️ Λήψη Excel", data=f, file_name="katanomi_output.xlsx")
