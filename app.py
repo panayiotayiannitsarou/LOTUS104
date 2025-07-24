@@ -105,7 +105,7 @@ st.download_button(
 )
 
     # 🔽 Κατέβασμα Στατιστικών Καλύτερου Σεναρίου
-    stats_df = st.session_state["all_stats_df"]
+stats_df = st.session_state["all_stats_df"]
     best_stats = stats_df[stats_df["ΣΕΝΑΡΙΟ"] == index + 1]
     output_stats = BytesIO()
     with pd.ExcelWriter(output_stats, engine='xlsxwriter') as writer:
