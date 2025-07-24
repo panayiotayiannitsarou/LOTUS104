@@ -2,7 +2,7 @@ import pandas as pd
 from collections import defaultdict
 import random
 
-def step3_idiaterotites(df: pd.DataFrame, num_classes: int) -> pd.DataFrame:
+def step3_idiaiterotites(df, num_classes):
     """
     Κατανομή Παιδιών με Ιδιαιτερότητες (Βήμα 3) για κάθε σενάριο.
     Τοποθετούνται όσοι έχουν ΙΔΙΑΙΤΕΡΟΤΗΤΑ = 'Ν', λαμβάνοντας υπόψη όσους έχουν ήδη τοποθετηθεί.
