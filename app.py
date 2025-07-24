@@ -108,17 +108,18 @@ if "scenario_dfs" in st.session_state and "final_df" in st.session_state:
     )
 
 # 🔽 Κατέβασμα Στατιστικών Καλύτερου Σεναρίου
-stats_df = st.session_state["all_stats_df"]
-best_stats = stats_df[stats_df["ΣΕΝΑΡΙΟ"] == index + 1]
-output_stats = BytesIO()
-with pd.ExcelWriter(output_stats, engine='xlsxwriter') as writer:
-    best_stats.to_excel(writer, index=False, sheet_name='Στατιστικά Καλύτερου')
-st.download_button(
-    label="📊 Κατέβασμα Excel – Στατιστικά Καλύτερου Σεναρίου",
-    data=output_stats.getvalue(),
-    file_name="statistika_kalyterou_senariou.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
+if "all_stats_df" in st.session_state and "best_index" in st.session_state:
+    stats_df = st.session_state["all_stats_df"]
+    best_stats = stats_df[stats_df["ΣΕΝΑΡΙΟ"] == index + 1]
+    output_stats = BytesIO()
+    with pd.ExcelWriter(output_stats, engine='xlsxwriter') as writer:
+        best_stats.to_excel(writer, index=False, sheet_name='Στατιστικά Καλύτερου')
+    st.download_button(
+        label="📊 Κατέβασμα Excel – Στατιστικά Καλύτερου Σεναρίου",
+        data=output_stats.getvalue(),
+        file_name="statistika_kalyterou_senariou.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
 
 # 📊 Προβολή Στατιστικών Πίνακα
 st.subheader("📊 Στατιστικά Κατανομής ανά Τμήμα")
