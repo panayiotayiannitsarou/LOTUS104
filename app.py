@@ -123,7 +123,11 @@ if "all_stats_df" in st.session_state and "best_index" in st.session_state:
 
 # 📊 Προβολή Στατιστικών Πίνακα
 st.subheader("📊 Στατιστικά Κατανομής ανά Τμήμα")
-show_statistics_table(df, num_classes)
+#show_statistics_table(df, num_classes)
+if df is not None and not df.empty:
+    show_statistics_table(df, num_classes)
+else:
+    st.warning("⚠️ Δεν υπάρχουν δεδομένα για να εμφανιστούν στατιστικά.")
 
 # 🔁 Κουμπί επανεκκίνησης
 st.markdown("---")
