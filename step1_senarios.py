@@ -26,7 +26,7 @@ def check_conflicts(pair, df):
 def get_fully_mutual_friends(df):
     mutual = defaultdict(list)
     names = df["ΟΝΟΜΑ"].tolist()
-    friends_dict = dict(zip(df["ΟΝΟΜΑ"], df["ΦΙΛΟΣ"]))
+    friends_dict = dict(zip(df["ΟΝΟΜΑ"], df["ΦΙΛΟΙ"]))
     for name in names:
         declared_friends = [f.strip() for f in str(friends_dict.get(name, "")).split(",") if f.strip() in names]
         for friend in declared_friends:
