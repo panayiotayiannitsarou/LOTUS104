@@ -55,6 +55,7 @@ if uploaded_file:
     all_stats = []
 
     for i, scenario_df in enumerate(scenarios):
+        senario_col = f"ΤΜΗΜΑ_ΣΕΝΑΡΙΟ_{i+1}"  # ✅ ορισμός στήλης-σεναρίου
         scenario_df = step2_zoiroi(scenario_df, num_classes, senario_col)
         scenario_df = step3_idiaiterotites(scenario_df, num_classes)
         scenario_df = step4_amivaia_filia(scenario_df)
