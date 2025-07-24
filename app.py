@@ -90,6 +90,12 @@ if "final_df" in st.session_state and st.session_state["final_df"] is not None:
         file_name="kalytero_senario_katanomi.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
+st.download_button(
+    label="📥 Κατέβασε Όλα τα Σενάρια",
+    data=excel_file.getvalue(),
+    file_name="senaria_kai_teliko.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
 
     # 🔽 Κατέβασμα Στατιστικών Καλύτερου Σεναρίου
     stats_df = st.session_state["all_stats_df"]
