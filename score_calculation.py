@@ -15,7 +15,7 @@ from step4 import step4_amivaia_filia
 from step5 import step5_filikoi_omades
 from step6 import step6_ypolipoi_xwris_filies
 from step7 import step7_final_check_and_fix
-from score import calculate_score  # ✅ Εισαγωγή score
+from score_calculation import calculate_score  # ✅ Εισαγωγή score
 
 # ➕ Ενδεικτική ροή εκτέλεσης για όλα τα σενάρια
 
