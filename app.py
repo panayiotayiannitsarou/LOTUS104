@@ -127,6 +127,7 @@ if "all_stats_df" in st.session_state and "best_index" in st.session_state:
 st.subheader("📊 Στατιστικά Κατανομής ανά Τμήμα")
 #show_statistics_table(df, num_classes)
 if df is not None and not df.empty:
+    df["ΤΜΗΜΑ"] = df[f"ΤΜΗΜΑ_ΣΕΝΑΡΙΟ_{index + 1}"]
     show_statistics_table(df, num_classes)
 else:
     st.warning("⚠️ Δεν υπάρχουν δεδομένα για να εμφανιστούν στατιστικά.")
