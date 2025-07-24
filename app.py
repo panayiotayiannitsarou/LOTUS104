@@ -104,37 +104,37 @@ st.download_button(
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
 
-    # 🔽 Κατέβασμα Στατιστικών Καλύτερου Σεναρίου
+# 🔽 Κατέβασμα Στατιστικών Καλύτερου Σεναρίου
 stats_df = st.session_state["all_stats_df"]
-    best_stats = stats_df[stats_df["ΣΕΝΑΡΙΟ"] == index + 1]
-    output_stats = BytesIO()
-    with pd.ExcelWriter(output_stats, engine='xlsxwriter') as writer:
-        best_stats.to_excel(writer, index=False, sheet_name='Στατιστικά Καλύτερου')
-    st.download_button(
-        label="📊 Κατέβασμα Excel – Στατιστικά Καλύτερου Σεναρίου",
-        data=output_stats.getvalue(),
-        file_name="statistika_kalyterou_senariou.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+best_stats = stats_df[stats_df["ΣΕΝΑΡΙΟ"] == index + 1]
+output_stats = BytesIO()
+with pd.ExcelWriter(output_stats, engine='xlsxwriter') as writer:
+    best_stats.to_excel(writer, index=False, sheet_name='Στατιστικά Καλύτερου')
+st.download_button(
+    label="📊 Κατέβασμα Excel – Στατιστικά Καλύτερου Σεναρίου",
+    data=output_stats.getvalue(),
+    file_name="statistika_kalyterou_senariou.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
 
-    # 📊 Προβολή Στατιστικών Πίνακα
-    st.subheader("📊 Στατιστικά Κατανομής ανά Τμήμα")
-    show_statistics_table(df, num_classes)
+# 📊 Προβολή Στατιστικών Πίνακα
+st.subheader("📊 Στατιστικά Κατανομής ανά Τμήμα")
+show_statistics_table(df, num_classes)
 
-    # 🔁 Κουμπί επανεκκίνησης
-    st.markdown("---")
-    if st.button("🔄 Δοκίμασε νέο αρχείο"):
-        reset_session()
-        st.experimental_rerun()
+# 🔁 Κουμπί επανεκκίνησης
+st.markdown("---")
+if st.button("🔄 Δοκίμασε νέο αρχείο"):
+    reset_session()
+    st.experimental_rerun()
 
-    # 📌 Footer με προσωπικό λογότυπο και απόφθεγμα
-    st.markdown("---")
-    col1, col2 = st.columns([1, 5])
-    with col1:
-        st.image("Screenshot 2025-07-17 170457.png", width=90)
-    with col2:
-        st.markdown("**Για μια παιδεία που βλέπει το φως σε όλα τα παιδιά**")
-    st.markdown("© 2025 • Δημιουργία: Παναγιώτα Γιαννίτσαρου")
+# 📌 Footer με προσωπικό λογότυπο και απόφθεγμα
+st.markdown("---")
+col1, col2 = st.columns([1, 5])
+with col1:
+    st.image("Screenshot 2025-07-17 170457.png", width=90)
+with col2:
+    st.markdown("**Για μια παιδεία που βλέπει το φως σε όλα τα παιδιά**")
+st.markdown("© 2025 • Δημιουργία: Παναγιώτα Γιαννίτσαρου")
 
 
 
