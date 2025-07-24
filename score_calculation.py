@@ -14,7 +14,7 @@ from step3 import step3_idiaiterotites
 from step4 import step4_amivaia_filia
 from step5 import step5_filikoi_omades
 from step6 import step6_ypolipoi_xwris_filies
-from step7 import step7_telikes_diorthoseis
+from step7 import step7_final_check_and_fix
 from score import calculate_score  # ✅ Εισαγωγή score
 
 # ➕ Ενδεικτική ροή εκτέλεσης για όλα τα σενάρια
@@ -25,7 +25,7 @@ def apply_all_steps_for_senario(df, num_classes):
     df = step4_amivaia_filia(df)
     df = step5_filikoi_omades(df, num_classes)
     df = step6_ypolipoi_xwris_filies(df, num_classes)
-    df = step7_telikes_diorthoseis(df, num_classes)
+    df = step7_final_check_and_fix(df, num_classes)
     return df
 
 uploaded_file = st.file_uploader("⬆️ Μεταφόρτωση Excel Μαθητών", type=[".xlsx"])
