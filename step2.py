@@ -3,7 +3,7 @@ import pandas as pd
 from collections import defaultdict
 
 
-def step2_zoiroi_mathites(df, num_classes, senario_col):
+def step2_zoiroi(df, num_classes, senario_col):
     df = df.copy()
 
     # Εντοπίζουμε όλους τους ζωηρούς μαθητές
