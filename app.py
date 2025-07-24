@@ -94,17 +94,18 @@ if "final_df" in st.session_state and st.session_state["final_df"] is not None:
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 # 📥 Κατέβασε Όλα τα Σενάρια (διορθωμένη εκδοχή)
-all_scenarios_excel = convert_multiple_dfs_to_excel(
-    st.session_state["scenario_dfs"],
-    st.session_state["final_df"]
-)
-
-st.download_button(
-    label="📥 Κατέβασε Όλα τα Σενάρια",
-    data=all_scenarios_excel.getvalue(),
-    file_name="senaria_kai_teliko.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
+if "scenario_dfs" in st.session_state and "final_df" in st.session_state:
+    all_scenarios_excel = convert_multiple_dfs_to_excel(
+        st.session_state["scenario_dfs"],
+        st.session_state["final_df"]
+    )
+    
+    st.download_button(
+        label="📥 Κατέβασε Όλα τα Σενάρια",
+        data=all_scenarios_excel.getvalue(),
+        file_name="senaria_kai_teliko.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
 
 # 🔽 Κατέβασμα Στατιστικών Καλύτερου Σεναρίου
 stats_df = st.session_state["all_stats_df"]
