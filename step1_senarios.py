@@ -4,9 +4,6 @@ from collections import defaultdict
 
 
 def check_conflicts(pair, df):
-    """
-    Επιστρέφει True αν υπάρχει εξωτερική ή παιδαγωγική σύγκρουση στο ζεύγος
-    """
     df = df.set_index("ΟΝΟΜΑ")
     p1, p2 = pair
 
@@ -27,9 +24,6 @@ def check_conflicts(pair, df):
 
 
 def get_fully_mutual_friends(df):
-    """
-    Επιστρέφει λεξικό με πλήρως αμοιβαίες φιλίες
-    """
     mutual = defaultdict(list)
     names = df["ΟΝΟΜΑ"].tolist()
     friends_dict = dict(zip(df["ΟΝΟΜΑ"], df["ΦΙΛΟΣ"]))
@@ -102,6 +96,10 @@ def step1_katanomi_paidia_ekpaideutikon(df: pd.DataFrame, num_classes: int):
                 if friend in teacher_names and teacher_assignment[name] != teacher_assignment[friend]:
                     broken_friendships += 1
 
+        # Απόρριψη σεναρίων όπου όλα τα παιδιά πάνε στο ίδιο τμήμα
+        if len(set(teacher_assignment.values())) == 1:
+            continue
+
         for name, assigned_class in teacher_assignment.items():
             scenario.loc[scenario["ΟΝΟΜΑ"] == name, "ΠΡΟΤΕΙΝΟΜΕΝΟ_ΤΜΗΜΑ"] = assigned_class
             scenario.loc[scenario["ΟΝΟΜΑ"] == name, "ΤΜΗΜΑ"] = assigned_class
@@ -125,6 +123,6 @@ def step1_katanomi_paidia_ekpaideutikon(df: pd.DataFrame, num_classes: int):
         col_to_fill = f"ΠΡΟΤΕΙΝΟΜΕΝΟ_ΤΜΗΜΑ_ΣΕΝΑΡΙΟ_{i+1}"
         scenario[col_to_fill] = scenario["ΠΡΟΤΕΙΝΟΜΕΝΟ_ΤΜΗΜΑ"]
         final_scenarios.append(scenario)
-        final_descriptions.append(f"Σενάριο με {len(teacher_names)} παιδιά εκπαιδευτικών, σπασμένες φιλίες: {broken_friendships}")
+        final_descriptions.append(f"Σενάριο {i+1} – Παιδιά εκπαιδευτικών, σπασμένες φιλίες: {broken_friendships}")
 
     return final_scenarios, final_descriptions

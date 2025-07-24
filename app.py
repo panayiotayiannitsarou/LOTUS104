@@ -122,3 +122,30 @@ if "final_df" in st.session_state and st.session_state["final_df"] is not None:
     with col2:
         st.markdown("**Για μια παιδεία που βλέπει το φως σε όλα τα παιδιά**")
     st.markdown("© 2025 • Δημιουργία: Παναγιώτα Γιαννίτσαρου")
+
+
+
+def show_final_statistics(df):
+    st.subheader("📊 Αναλυτικά Στατιστικά Ανά Τμήμα:")
+
+    if "ΤΜΗΜΑ" not in df.columns:
+        st.warning("Δεν βρέθηκε η στήλη ΤΜΗΜΑ για το τελικό σενάριο.")
+        return
+
+    stats = df.groupby("ΤΜΗΜΑ").agg({
+        "ΦΥΛΟ": lambda x: (x == "Α").sum(),  # Αγορια
+    }).rename(columns={"ΦΥΛΟ": "Αγόρια"})
+
+    stats["Κορίτσια"] = df.groupby("ΤΜΗΜΑ")["ΦΥΛΟ"].apply(lambda x: (x == "Κ").sum())
+    stats["Παιδιά Εκπαιδευτικών"] = df.groupby("ΤΜΗΜΑ")["ΠΑΙΔΙ_ΕΚΠΑΙΔΕΥΤΙΚΟΥ"].apply(lambda x: (x == "Ν").sum())
+    stats["Ζωηροί"] = df.groupby("ΤΜΗΜΑ")["ΖΩΗΡΟΣ"].apply(lambda x: (x == "Ν").sum())
+    stats["Ιδιαιτερότητα"] = df.groupby("ΤΜΗΜΑ")["ΙΔΙΑΙΤΕΡΟΤΗΤΑ"].apply(lambda x: (x == "Ν").sum())
+    stats["Καλή Γνώση ΕΛΛ"] = df.groupby("ΤΜΗΜΑ")["ΚΑΛΗ_ΓΝΩΣΗ_ΕΛΛΗΝΙΚΩΝ"].apply(lambda x: (x == "Ν").sum())
+    stats["Σύνολο"] = df.groupby("ΤΜΗΜΑ")["ΟΝΟΜΑ"].count()
+
+    st.dataframe(stats.reset_index())
+
+
+
+if st.button("📊 Στατιστικά Τελικής Κατανομής"):
+    show_final_statistics(st.session_state["final_df"])
