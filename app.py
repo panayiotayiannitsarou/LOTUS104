@@ -91,7 +91,6 @@ if "final_df" in st.session_state and st.session_state["final_df"] is not None:
         file_name="kalytero_senario_katanomi.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
-)
 # 📥 Κατέβασε Όλα τα Σενάρια (διορθωμένη εκδοχή)
 all_scenarios_excel = convert_multiple_dfs_to_excel(
     st.session_state["scenario_dfs"],
