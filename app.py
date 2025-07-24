@@ -17,6 +17,8 @@ from statistics import show_statistics_table
 from score_calculation import calculate_score
 from utils_step7_helper import enrich_for_step7
 
+df = None  # ✅ Αρχικοποίηση ώστε να αποφύγουμε NameError
+
 def reset_session():
     keys_to_clear = [
         "scenario_dfs",
